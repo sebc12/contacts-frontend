@@ -10,8 +10,17 @@ const formatDate = (dateString: string) => {
   return dayjs(dateString).format("DD-MM-YYYY HH:mm");
 };
 
+interface Contact {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 export default function ContactsPage() {
-  const [contacts, setContacts] = useState<any[]>([]);
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -79,8 +88,8 @@ export default function ContactsPage() {
                   <td className="py-2 px-4">{contact.name}</td>
                   <td className="py-2 px-4">{contact.email}</td>
                   <td className="py-2 px-4">{contact.phone}</td>
-                  <td className="py-2 px-4">{formatDate(contact.created_at)}</td>
-                  <td className="py-2 px-4">{formatDate(contact.updated_at)}</td>
+                  <td className="py-2 px-4">{formatDate(contact.created_at || "")}</td>
+                  <td className="py-2 px-4">{formatDate(contact.updated_at || "")}</td>
                   <td className="py-2 px-4">
                   <Link
                     href={`/contacts/${contact.id}`}

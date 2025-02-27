@@ -4,11 +4,20 @@ import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { updateContact } from "@/lib/contacts/updateContact";
 
+interface Contact {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 export default function EditContactPage() {
   const params = useParams();
   const id = params.id; // Hent id fra URL'en
 
-  const [contact, setContact] = useState<any>(null);
+  const [contact, setContact] = useState<Contact | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
